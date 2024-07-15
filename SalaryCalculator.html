@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Net Salary Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .c1 {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #0834d4c4;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #062ea2;
+        }
+        .result {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="c1">
+        <h2>Net Salary Calculator</h2>
+        <label for="basic-salary">Basic Salary:</label>
+        <input type="number" id="basic-salary" placeholder="Enter Basic Salary">
+
+        <button onclick="calculateNetSalary()">Calculate Net Salary</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateNetSalary() {
+            const basicSalary = parseFloat(document.getElementById('basic-salary').value);
+            let hra, ta, bonus;
+
+            if (basicSalary >= 10000) {
+                hra = 0.1 * basicSalary;
+                ta = 0.08 * basicSalary;
+                bonus = 15000;
+            } else {
+                hra = 7000;
+                ta = 5000;
+                bonus = 9000;
+            }
+
+            const netSalary = basicSalary + hra + ta + bonus;
+
+            document.getElementById('result').innerHTML = `
+                <p>Basic Salary: ${basicSalary}</p>
+                <p>HRA: ${hra}</p>
+                <p>TA: ${ta}</p>
+                <p>Bonus: ${bonus}</p>
+                <p>Net Salary: ${netSalary}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
